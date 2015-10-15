@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hike Schedule</title>
+    </head>
+    <body>
+        {% for event in events %}
+            <p><strong>{{ event.event_date|date:"l, F j" }} - {{ event.event_type }}: {{ event.title }}</strong><br>
+            {% if event.notes != '' %}
+                ***{{event.notes}}***<br>
+            {% endif %}
+                {{event.description}}<br>
+            {% if event.event_type.name != "Pub Night" %}
+                {{ event.event_type }}: {{event.distance}} mi {{event.route_type}}, {{event.elevation_gain}}' elevation gain<br>
+                Drive: {{ event.drive_distance }} mi RT<br>
+                Meet: {{ event.meeting_place }} at {{event.event_date|date:"g:i a"}}<br>
+                Leaders: {{ event.leaders }}</p>
+            {% endif %}
+        {% endfor %}
+    </body>
+</html>
